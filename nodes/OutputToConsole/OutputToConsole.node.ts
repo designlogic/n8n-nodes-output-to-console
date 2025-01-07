@@ -2,7 +2,6 @@
 /* eslint-disable n8n-nodes-base/node-class-description-inputs-wrong-regular-node */
 
 import {
-	//IDataObject,
 	INodeExecutionData,
 	IExecuteFunctions,
 	INodeType,
@@ -11,7 +10,6 @@ import {
 } from 'n8n-workflow';
 
 export class OutputToConsole implements INodeType {
-	notes: string = 'test';
 	description: INodeTypeDescription = {
 		displayName: 'Output to Console',
 		name: 'outputToConsole',
@@ -26,7 +24,7 @@ export class OutputToConsole implements INodeType {
 		outputs: [NodeConnectionType.Main],
 		properties: [
 			{
-				displayName: 'Text to Output',
+				displayName: 'Text To Output',
 				name: 'textToOutput',
 				type: 'string',
 				default: '',
