@@ -24,7 +24,7 @@ export class OutputToConsole implements INodeType {
 		outputs: [NodeConnectionType.Main],
 		properties: [
 			{
-				displayName: 'Text To Output',
+				displayName: 'Text To Output2',
 				name: 'textToOutput',
 				type: 'string',
 				default: '',
