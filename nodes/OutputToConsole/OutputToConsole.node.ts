@@ -8,6 +8,7 @@ import {
 	INodeTypeDescription,
 	NodeConnectionType,
 } from 'n8n-workflow';
+import { OutputUtilities } from './OutputUtilities';
 
 export class OutputToConsole implements INodeType {
 	description: INodeTypeDescription = {
@@ -24,9 +25,9 @@ export class OutputToConsole implements INodeType {
 		outputs: [NodeConnectionType.Main],
 		properties: [
 			{
-				displayName: 'Text To Output2',
+				displayName: 'Text To Output',
 				name: 'textToOutput',
-				type: 'string',
+				type: 'json',
 				default: '',
 				description: 'The text to output to the browser console',
 			}
@@ -36,9 +37,12 @@ export class OutputToConsole implements INodeType {
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 		const items = this.getInputData();
 		const separator = '=====================';
+		const outputHelper = new OutputUtilities();
 
 		for (let i = 0; i < items.length; i++) {
+
 			let textToOutput = this.getNodeParameter('textToOutput', i);
+			textToOutput = outputHelper.formatOutput(textToOutput);
 
 			let message = `\n\n${separator}\n\n${textToOutput}\n\n${separator}\n\n`;
 			this.sendMessageToUI(message);
