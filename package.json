@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-output-to-console",
-	"version": "1.0.0",
+	"version": "2.0.0",
 	"description": "n8n node to output text to the console.",
 	"keywords": [
 		"n8n-community-node-package"
@@ -34,21 +34,19 @@
 			"dist/nodes/OutputToConsole/OutputToConsole.node.js"
 		]
 	},
-  "devDependencies": {
-    "@types/node": "^22.10.7",
-    "@typescript-eslint/parser": "^7.15.0",
-    "assert": "^2.1.0",
-    "eslint": "^8.56.0",
-    "eslint-plugin-n8n-nodes-base": "^1.16.1",
-    "gulp": "^4.0.2",
-    "n8n-workflow": "^1.70.0",
-    "prettier": "^3.3.2",
-    "typescript": "^5.5.3"
-  },
-  "peerDependencies": {
-    "n8n-workflow": "*"
-  },
-  "dependencies": {}
+	"devDependencies": {
+		"@types/node": "^22.10.7",
+		"@typescript-eslint/parser": "^7.15.0",
+		"assert": "^2.1.0",
+		"eslint": "^8.56.0",
+		"eslint-plugin-n8n-nodes-base": "^1.16.1",
+		"gulp": "^4.0.2",
+		"n8n-workflow": "^1.70.0",
+		"prettier": "^3.3.2",
+		"typescript": "^5.5.3"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	},
+	"dependencies": {}
 }
-
-
