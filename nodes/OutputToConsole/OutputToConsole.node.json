@@ -1,6 +1,6 @@
 {
 	"node": "n8n-nodes-base.OutputToConsole",
-	"nodeVersion": "1.0",
+	"nodeVersion": "1.1",
 	"codexVersion": "1.0",
 	"categories": [
 		"Miscellaneous"
@@ -13,7 +13,7 @@
 		],
 		"primaryDocumentation": [
 			{
-				"url": ""
+				"url": "https://github.com/designlogic/n8n-nodes-output-to-console"
 			}
 		]
 	}

@@ -44,7 +44,10 @@ export class OutputToConsole implements INodeType {
 			let textToOutput = this.getNodeParameter('textToOutput', i);
 			textToOutput = outputHelper.formatOutput(textToOutput);
 
-			let message = `\n\n${separator}\n\n${textToOutput}\n\n${separator}\n\n`;
+			let message = `\n\n${separator}\n\n`;
+			message += `${textToOutput}`;
+			message += `\n\n${separator}\n\n`;
+
 			this.sendMessageToUI(message);
 		}
 
