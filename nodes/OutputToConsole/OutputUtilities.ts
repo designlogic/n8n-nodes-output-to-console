@@ -1,3 +1,5 @@
+import type { IDataObject } from 'n8n-workflow';
+
 export class OutputUtilities {
     public formatOutput(obj: any): string {
         if (this.isJsonObject(obj)) {
@@ -61,3 +63,13 @@ export class OutputUtilities {
         return null;
     }
 }
+
+export type SetField = {
+	name: string;
+	type: 'stringValue' | 'numberValue' | 'booleanValue' | 'arrayValue' | 'objectValue';
+	stringValue?: string;
+	numberValue?: number;
+	booleanValue?: boolean;
+	arrayValue?: string[] | string | IDataObject | IDataObject[];
+	objectValue?: string | IDataObject;
+};
