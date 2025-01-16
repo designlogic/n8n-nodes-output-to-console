@@ -1,5 +1,3 @@
-import type { IDataObject } from 'n8n-workflow';
-
 export class OutputUtilities {
     public formatOutput(obj: any): string {
         if (this.isJsonObject(obj)) {
@@ -12,6 +10,45 @@ export class OutputUtilities {
         }
         return String(obj);
     }
+
+
+		public singleItemTemplate(content: string) : string{
+			return `
+
+
+===========================================
+
+${content}
+
+===========================================
+		`}
+
+		public multiItemTemplate(content: string, index: number) : string{
+			return `
+
+
+================ Item ${index} ===================
+
+${content}
+
+===========================================
+
+
+					`}
+
+		public messages: string[] = [];
+
+		public clear() {
+			this.messages = [];
+		}
+
+		public appendLine(stringToAppend?: string) {
+			this.append((stringToAppend || "") + '\n');
+		}
+
+		public append(stringToAppend?: string){
+			this.messages.push((stringToAppend || ""));
+		}
 
     private friendlyJsonStringify(obj: any, indent: number = 0): string {
         let result = "";
@@ -63,13 +100,3 @@ export class OutputUtilities {
         return null;
     }
 }
-
-export type SetField = {
-	name: string;
-	type: 'stringValue' | 'numberValue' | 'booleanValue' | 'arrayValue' | 'objectValue';
-	stringValue?: string;
-	numberValue?: number;
-	booleanValue?: boolean;
-	arrayValue?: string[] | string | IDataObject | IDataObject[];
-	objectValue?: string | IDataObject;
-};
