@@ -7,7 +7,9 @@ import {
 	INodeType,
 	INodeTypeDescription,
 	NodeConnectionType,
+	AssignmentCollectionValue,
 } from 'n8n-workflow';
+
 import { OutputUtilities } from './OutputUtilities';
 
 export class OutputToConsole implements INodeType {
@@ -26,29 +28,43 @@ export class OutputToConsole implements INodeType {
 		properties: [
 			{
 				displayName: 'Text To Output',
-				name: 'textToOutput',
-				type: 'json',
-				default: '',
+				name: 'assignments',
+				type: 'assignmentCollection',
 				description: 'The text to output to the browser console',
-			}
+				default: {},
+			},
 		],
 	};
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		const items = this.getInputData();
-		const separator = '=====================';
-		const outputHelper = new OutputUtilities();
+			const items = this.getInputData();
 
-		for (let i = 0; i < items.length; i++) {
+			try{
+			let textToOutput = '';
 
-			let textToOutput = this.getNodeParameter('textToOutput', i);
-			textToOutput = outputHelper.formatOutput(textToOutput);
+			for (let i = 0; i < items.length; i++) {
+				const outputHelper = new OutputUtilities();
+				const assignmentCollection = this.getNodeParameter('assignments',i,) as AssignmentCollectionValue;
+				const assignments = assignmentCollection?.assignments ?? [];
+				const outputTemplate = (items.length > 1 ) ?  outputHelper.multiItemTemplate : outputHelper.singleItemTemplate;
 
-			let message = `\n\n${separator}\n\n`;
-			message += `${textToOutput}`;
-			message += `\n\n${separator}\n\n`;
+				assignments
+				.filter((assignment) => {
+					return outputHelper.hasValue(assignment.value);
+				})
+				.forEach((assignment) => {
+					const formattedOutput = outputHelper.formatOutput(assignment.value, assignment.name);
+					outputHelper.appendLine(formattedOutput);
+				});
 
-			this.sendMessageToUI(message);
+				textToOutput += outputTemplate(outputHelper.messages.join(`\n-------------------------------------------------\n\n`).trimEnd(), i + 1);
+			}
+
+			this.sendMessageToUI(textToOutput);
+
+		}
+		catch(error){
+			this.sendMessageToUI(`Error: ${(error as Error).message}`);
 		}
 
 		return [this.helpers.returnJsonArray(items)];
