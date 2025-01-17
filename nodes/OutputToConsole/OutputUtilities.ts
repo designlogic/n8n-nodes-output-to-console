@@ -65,7 +65,7 @@ ${content}
 
         if (typeof obj !== 'object' || obj === null) {
             // Base case for primitive types
-            result += `#${padding}&${obj}\n`;
+            result += `${padding}${obj}\n`;
             return result;
         }
 

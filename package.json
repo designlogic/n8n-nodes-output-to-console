@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-output-to-console",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"description": "n8n node to output text to the console.",
 	"keywords": [
 		"n8n-community-node-package"
