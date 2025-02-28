@@ -16,7 +16,10 @@ export class OutputToConsole implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Output to Console',
 		name: 'outputToConsole',
-		icon: 'file:terminal.svg',
+		icon: {
+			light: 'file:terminal-light.svg',
+			dark: 'file:terminal-dark.svg',
+		},
 		group: ['transform'],
 		version: 1,
 		description: 'Outputs data to the browser console',
